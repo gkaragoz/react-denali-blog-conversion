@@ -24,22 +24,22 @@ function App() {
           </div>
           <div className="appPanel">
             <Switch>
+              <Route exact path="/about">
+                <AboutCard />
+              </Route>
+              <Route exact path="/contact">
+                <ContactCard />
+              </Route>
+              <Route exact path="/">
+                <BlogList blogPosts={blogPosts} />
+              </Route>
               <Route
                 exact
                 path="/:blogPostTitle"
                 render={({ location }) => (
                   <BlogPost blogPost={getBlogPost(location.state.id)} />
                 )}
-              ></Route>
-              <Route path="/about">
-                <AboutCard />
-              </Route>
-              <Route path="/contact">
-                <ContactCard />
-              </Route>
-              <Route path="/">
-                <BlogList blogPosts={blogPosts} />
-              </Route>
+              />
             </Switch>
           </div>
         </div>
