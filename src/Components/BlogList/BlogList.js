@@ -6,13 +6,11 @@ import "./BlogList.css";
 function BlogList({ blogPosts }) {
   const renderBlogCards = () => {
     return blogPosts.map(
-      (
-        { title, timeStamp, category, imageURL, imageALT, description },
-        index
-      ) => {
+      ({ id, title, timeStamp, category, imageURL, imageALT, description }) => {
         return (
           <BlogCard
-            key={index}
+            id={id}
+            key={id}
             title={title}
             timeStamp={timeStamp}
             category={category}

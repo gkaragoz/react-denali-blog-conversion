@@ -57,7 +57,7 @@ export const blogPosts = [
   },
 ];
 
-const getfeaturedPosts = () => {
+const getFeaturedPosts = () => {
   const randomElement01 =
     blogPosts[Math.floor(Math.random() * blogPosts.length)];
   const newBlogPosts = blogPosts.filter((bp) => bp !== randomElement01);
@@ -66,4 +66,8 @@ const getfeaturedPosts = () => {
   return [randomElement01, randomElement02];
 };
 
-export const featuredPosts = getfeaturedPosts();
+export const featuredPosts = getFeaturedPosts();
+
+export const getBlogPost = (id) => {
+  return blogPosts.find((blogPost) => blogPost.id === id);
+};

@@ -12,7 +12,12 @@ function ProfileCard({ featuredPosts }) {
       <Link
         key={fp.id}
         className="profileBlogPost"
-        to={`/${getSlugURL(fp.title)}`}
+        to={{
+          pathname: `/${getSlugURL(fp.title)}`,
+          state: {
+            id: fp.id,
+          },
+        }}
       >
         {fp.title}
       </Link>

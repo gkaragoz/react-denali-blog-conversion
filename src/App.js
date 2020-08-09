@@ -1,12 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
-import { blogPosts, featuredPosts } from "./Data/blogPosts";
+import { blogPosts, featuredPosts, getBlogPost } from "./Data/blogPosts";
 import "./App.css";
 
 import {
   Header,
   AboutCard,
+  BlogPost,
   BlogList,
   ContactCard,
   ProfileCard,
@@ -15,29 +16,34 @@ import {
 function App() {
   return (
     <div className="app">
-      <Router>
-        <Header />
-        <div className="appContent">
-          <div className="appNarrowContainer">
-            <div className="appProfile">
-              <ProfileCard featuredPosts={featuredPosts} />
-            </div>
-            <div className="appPanel">
-              <Switch>
-                <Route path="/about">
-                  <AboutCard />
-                </Route>
-                <Route path="/contact">
-                  <ContactCard />
-                </Route>
-                <Route path="/">
-                  <BlogList blogPosts={blogPosts} />
-                </Route>
-              </Switch>
-            </div>
+      <Header />
+      <div className="appContent">
+        <div className="appNarrowContainer">
+          <div className="appProfile">
+            <ProfileCard featuredPosts={featuredPosts} />
+          </div>
+          <div className="appPanel">
+            <Switch>
+              <Route
+                exact
+                path="/:blogPostTitle"
+                render={({ location }) => (
+                  <BlogPost blogPost={getBlogPost(location.state.id)} />
+                )}
+              ></Route>
+              <Route path="/about">
+                <AboutCard />
+              </Route>
+              <Route path="/contact">
+                <ContactCard />
+              </Route>
+              <Route path="/">
+                <BlogList blogPosts={blogPosts} />
+              </Route>
+            </Switch>
           </div>
         </div>
-      </Router>
+      </div>
     </div>
   );
 }

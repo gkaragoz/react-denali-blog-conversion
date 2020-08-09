@@ -6,6 +6,7 @@ import { getSlugURL } from "../../helper";
 import "./BlogCard.css";
 
 function BlogCard({
+  id,
   title,
   timeStamp,
   category,
@@ -20,7 +21,16 @@ function BlogCard({
           <img src={imageURL} alt={imageALT} />
         </div>
         <div className="info">
-          <Link to={`/${getSlugURL(title)}`}>{title}</Link>
+          <Link
+            to={{
+              pathname: `/${getSlugURL(title)}`,
+              state: {
+                id,
+              },
+            }}
+          >
+            {title}
+          </Link>
           <div className="details">
             <h2>{timeStamp} |&nbsp;</h2>
             <Link to="/">{category}</Link>
@@ -28,7 +38,16 @@ function BlogCard({
           <div className="content">
             <p>
               {description}&nbsp;
-              <Link to={`/${getSlugURL(title)}`}>Read more...</Link>
+              <Link
+                to={{
+                  pathname: `/${getSlugURL(title)}`,
+                  state: {
+                    id,
+                  },
+                }}
+              >
+                Read more...
+              </Link>
             </p>
           </div>
         </div>
